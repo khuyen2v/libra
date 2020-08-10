@@ -694,7 +694,7 @@ jobs:
             docker/build_push.sh -u -b ${BRANCH} -n cluster-test
             GIT_REV=$(git rev-parse --short=8 HEAD)
             aws ecr get-login-password --region ${AWS_REGION} | \
-            docker login --username AWS --password-stdin "$AWS_ECR_REPO"
+            docker login --username AWS --password-stdin "${AWS_ECR_ACCOUNT_URL}"
             docker/push_dockerhub_images.sh -t ${BRANCH}_${GIT_REV}
 workflows:
   commit-workflow:
